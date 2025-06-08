@@ -14,6 +14,7 @@
 package com.querydsl.core;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import org.jetbrains.annotations.Nullable;
@@ -109,6 +110,9 @@ public final class QueryModifiers implements Serializable {
   public <T> List<T> subList(List<T> list) {
     if (!list.isEmpty()) {
       var from = offset != null ? toInt(offset) : 0;
+      if (from >= list.size()) {
+        return Collections.emptyList();
+      }
       var to = limit != null ? (from + toInt(limit)) : list.size();
       return list.subList(from, Math.min(to, list.size()));
     } else {
