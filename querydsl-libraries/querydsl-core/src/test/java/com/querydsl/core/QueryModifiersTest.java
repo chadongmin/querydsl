@@ -80,5 +80,6 @@ public class QueryModifiersTest {
     assertThat(QueryModifiers.offset(2).subList(ints)).isEqualTo(Arrays.asList(3, 4, 5));
     assertThat(QueryModifiers.limit(3).subList(ints)).isEqualTo(Arrays.asList(1, 2, 3));
     assertThat(new QueryModifiers(3L, 1L).subList(ints)).isEqualTo(Arrays.asList(2, 3, 4));
+    assertThat(QueryModifiers.offset(5).subList(ints)).isEmpty();
   }
 }
